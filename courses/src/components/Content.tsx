@@ -1,23 +1,10 @@
-interface Part {
-  name: string;
-  exerciseCount: number;
-}
+import { ContentProps } from "../types";
+import Part from "./Part";
 
-interface ContentProps {
-  parts: Part[];
-}
-
-const Content = (props: ContentProps) => {
-
-  return (
-    <div>
-      {props.parts.map(part =>
-        <p>
-          {part.name} {part.exerciseCount}
-        </p>
-      )}
-    </div>
+const Content = ({ parts }: ContentProps) => {
+  return parts.map(part =>
+    <Part key={part.name} part={part} />
   )
 }
 
-export default Content;
+export default Content
