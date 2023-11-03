@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { useState } from "react";
-import { Box, Table, Button, TableHead, Typography, TableCell, TableRow, TableBody } from '@mui/material';
+import { Box, Table, Button, TableHead, Typography, TableCell, TableRow, TableBody, Alert } from '@mui/material';
 import { Link } from 'react-router-dom';
 
 import { PatientFormValues, Patient } from "../../types";
@@ -17,6 +17,7 @@ const PatientListPage = ({ patients, setPatients } : Props ) => {
 
   const [modalOpen, setModalOpen] = useState<boolean>(false);
   const [error, setError] = useState<string>();
+  const [success, setSuccess] = useState<string>();
 
   const openModal = (): void => setModalOpen(true);
 
@@ -30,6 +31,10 @@ const PatientListPage = ({ patients, setPatients } : Props ) => {
       const patient = await patientService.create(values);
       setPatients(patients.concat(patient));
       setModalOpen(false);
+      setSuccess(`Added a new patient: ${patient.name}!`);
+      setTimeout(() => {
+        setSuccess(undefined);
+      }, 5000);
     } catch (e: unknown) {
       if (axios.isAxiosError(e)) {
         if (e?.response?.data && typeof e?.response?.data === "string") {
@@ -48,7 +53,14 @@ const PatientListPage = ({ patients, setPatients } : Props ) => {
 
   return (
     <div className="App">
+      <Button component={Link} to='/' variant='contained' color='primary'>
+        Home
+      </Button>
+      <Button className='add-button' variant="contained" onClick={() => openModal()}>
+        Add New Patient
+      </Button>
       <Box>
+      {success && <Alert severity="success">{success}</Alert>}
         <Typography align="center" variant="h6">
           Patient list
         </Typography>
@@ -83,9 +95,6 @@ const PatientListPage = ({ patients, setPatients } : Props ) => {
         error={error}
         onClose={closeModal}
       />
-      <Button variant="contained" onClick={() => openModal()}>
-        Add New Patient
-      </Button>
     </div>
   );
 };

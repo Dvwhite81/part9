@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Route, Link, Routes } from 'react-router-dom';
-import { Button, Divider, Container, Typography } from '@mui/material';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { Divider, Container, Typography } from '@mui/material';
 
 import { apiBaseUrl } from './constants';
 import { Patient, Diagnosis } from './types';
@@ -39,9 +39,6 @@ const App = () => {
           <Typography variant='h3' style={{ marginBottom: '0.5em' }}>
             Patientor
           </Typography>
-          <Button component={Link} to='/' variant='contained' color='primary'>
-            Home
-          </Button>
           <Divider hidden />
           <Routes>
             <Route path='/' element={<PatientListPage patients={patients} setPatients={setPatients} />} />

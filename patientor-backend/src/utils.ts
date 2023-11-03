@@ -145,7 +145,7 @@ const parseSickLeave = (object: unknown): SickLeave | undefined => {
 };
 
 const parseHealthCheckRating = (rating: unknown): HealthCheckRating => {
-  if (!rating) throw new Error('Entry must include a healthCheckRating number');
+  if (rating === null) throw new Error('Entry must include a healthCheckRating number');
   if (typeof rating !== 'number') throw new Error('Health Check Rating must be a number');
   if (rating < 0 || rating > 3) throw new Error('Health Check Rating must be 0, 1, 2, or 3');
 
