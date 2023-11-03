@@ -1,0 +1,15 @@
+.patient-entry-item {
+  border: 1px solid black;
+  margin-bottom: 5px;
+  padding: 5px;
+}
+
+.patient-entry-item p,
+.patient-details-div p {
+  margin: 0;
+}
+
+.patient-link {
+  color: blue;
+  text-decoration: none;
+}
