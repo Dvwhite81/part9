@@ -26,15 +26,30 @@ const PatientDetailsPage = () => {
 
   return (
     <div>
-      <h2>
-        {patient.name}&nbsp;
-        {patient.gender === Gender.Male ? <Male /> : ''}
-        {patient.gender === Gender.Female ? <Female /> : ''}
-        {patient.gender === Gender.Other ? <Transgender /> : ''}
-      </h2>
       <div>
-        <p>ssn: {patient.ssn}</p>
-        <p>occupation: {patient.occupation}</p>
+        <h2>
+          {patient.name}&nbsp;
+          {patient.gender === Gender.Male ? <Male /> : ''}
+          {patient.gender === Gender.Female ? <Female /> : ''}
+          {patient.gender === Gender.Other ? <Transgender /> : ''}
+        </h2>
+        <div>
+          <p>ssn: {patient.ssn}</p>
+          <p>occupation: {patient.occupation}</p>
+        </div>
+      </div>
+      <div>
+        <h3>Entries</h3>
+        {patient.entries.map(entry =>
+          <div>
+            <p><strong>{entry.date}:</strong> <em>{entry.description}</em></p>
+            <ul>
+              {entry.diagnosisCodes?.map(d =>
+                <li key={d}>{d}</li>
+              )}
+            </ul>
+          </div>
+        )}
       </div>
     </div>
   );
