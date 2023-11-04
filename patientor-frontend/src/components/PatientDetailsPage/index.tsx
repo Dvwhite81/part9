@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Dispatch } from 'react';
 import { useParams } from 'react-router-dom';
 import { Male, Female, Transgender } from '@mui/icons-material';
 import { Button, Alert, Box, Typography } from '@mui/material';
@@ -8,15 +8,17 @@ import { Patient, Gender, Diagnosis, Entry, NewEntry } from '../../types';
 import patientService from '../../services/patients';
 import { EntryDetails } from './EntryDetails';
 import AddEntryModal from '../AddEntryModal';
+import HealthRatingBar from '../HealthRatingBar';
 import axios from 'axios';
 
 interface Props {
   diagnoses: Diagnosis[];
+  entries: Entry[];
+  setEntries: Dispatch<React.SetStateAction<Entry[]>>;
 }
 
-const PatientDetailsPage = ({ diagnoses }: Props) => {
+const PatientDetailsPage = ({ diagnoses, entries, setEntries }: Props) => {
   const [patient, setPatient] = useState<Patient>();
-  const [entries, setEntries] = useState<Entry[]>([]);
   const { id } = useParams<{ id: string }>();
 
   const [modalOpen, setModalOpen] = useState<boolean>(false);
@@ -42,7 +44,7 @@ const PatientDetailsPage = ({ diagnoses }: Props) => {
     };
 
     void getPatientDetails();
-  }, [id, entries]);
+  }, [id, entries, setEntries]);
 
   if (!patient || !id) {
     return null;
@@ -53,7 +55,6 @@ const PatientDetailsPage = ({ diagnoses }: Props) => {
       await patientService.createEntry(id, values);
       setEntries(patient.entries);
       setModalOpen(false);
-      // Maybe use values?
       setSuccess(`Added a new entry: ${values.description}!`);
       setTimeout(() => {
         setSuccess(undefined);
@@ -90,6 +91,7 @@ const PatientDetailsPage = ({ diagnoses }: Props) => {
           {patient.gender === Gender.Female ? <Female /> : ''}
           {patient.gender === Gender.Other ? <Transgender /> : ''}
         </Typography>
+        <HealthRatingBar showText={false} rating={patient.averageRating} />
       </Box>
       <div className='patient-details-div'>
         <p>ssn: {patient.ssn}</p>

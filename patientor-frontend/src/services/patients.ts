@@ -38,5 +38,8 @@ const createEntry = async (id: string, object: NewEntry) => {
 };
 
 export default {
-  getAll, create, getPatient, createEntry
+  getAll,
+  create,
+  getPatient,
+  createEntry
 };

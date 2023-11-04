@@ -1,11 +1,11 @@
 div#root {
-  height: 100vh;
+  height: 100%;
   width: 100vw;
 }
 
 .App {
-  height: 100vh;
-  margin: auto;
+  height: 100%;
+  margin: auto auto 2rem auto;
   position: relative;
   width: 80vw;
 }

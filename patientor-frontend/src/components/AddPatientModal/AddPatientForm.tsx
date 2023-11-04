@@ -43,7 +43,8 @@ const AddPatientForm = ({ onCancel, onSubmit }: Props) => {
       occupation,
       ssn,
       dateOfBirth,
-      gender
+      gender,
+      averageRating: 0
     });
   };
 
@@ -52,7 +53,7 @@ const AddPatientForm = ({ onCancel, onSubmit }: Props) => {
       <form onSubmit={addPatient}>
         <TextField
           label="Name"
-          fullWidth 
+          fullWidth
           value={name}
           onChange={({ target }) => setName(target.value)}
         />

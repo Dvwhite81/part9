@@ -10,7 +10,7 @@ import patientService from "../../services/patients";
 
 interface Props {
   patients : Patient[]
-  setPatients: React.Dispatch<React.SetStateAction<Patient[]>>
+  setPatients: React.Dispatch<React.SetStateAction<Patient[]>>;
 }
 
 const PatientListPage = ({ patients, setPatients } : Props ) => {
@@ -77,13 +77,14 @@ const PatientListPage = ({ patients, setPatients } : Props ) => {
         <TableBody>
           {Object.values(patients).map((patient: Patient) => (
             <TableRow key={patient.id}>
+              <TableCell>Patient: {patient.averageRating}</TableCell>
               <TableCell>
                 <Link to={`/patients/${patient.id}`}>{patient.name}</Link>
               </TableCell>
               <TableCell>{patient.gender}</TableCell>
               <TableCell>{patient.occupation}</TableCell>
               <TableCell>
-                <HealthRatingBar showText={false} rating={1} />
+                <HealthRatingBar showText={true} rating={patient.averageRating} />
               </TableCell>
             </TableRow>
           ))}
