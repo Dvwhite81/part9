@@ -42,13 +42,15 @@ const DiagnosisListElement = ({ entry, diagnoses }: Props) => {
   );
 };
 
-const HealthCheckEntryDetails: React.FC<{ entry: HealthCheckEntry, diagnoses: Diagnosis[] }> = ({ entry }) => {
+const HealthCheckEntryDetails: React.FC<{ entry: HealthCheckEntry, diagnoses: Diagnosis[] }> = ({ entry, diagnoses }) => {
   return (
     <div className='patient-entry-item'>
       <p><strong>{entry.date}</strong> <MedicalServices /></p>
       <p><strong>Details: </strong><em>{entry.description}</em></p>
       <p style={{ color: heartColor(entry.healthCheckRating) }}><Favorite /></p>
       <p><strong>Diagnosed by: </strong>{entry.specialist}</p>
+      <h4>Diagnoses:</h4>
+      <DiagnosisListElement entry={entry} diagnoses={diagnoses} />
     </div>
   );
 };
@@ -65,12 +67,14 @@ const HospitalEntryDetails: React.FC<{ entry: HospitalEntry, diagnoses: Diagnosi
   );
 };
 
-const OccupationalHealthcareEntryDetails: React.FC<{ entry: OccupationalHealthcareEntry, diagnoses: Diagnosis[] }> = ({ entry }) => {
+const OccupationalHealthcareEntryDetails: React.FC<{ entry: OccupationalHealthcareEntry, diagnoses: Diagnosis[] }> = ({ entry, diagnoses }) => {
   return (
     <div className='patient-entry-item'>
       <p><strong>{entry.date}</strong> <Work /> Employer: {entry.employerName}</p>
       <p><strong>Details: </strong><em>{entry.description}</em></p>
       <p><strong>Diagnosed by: </strong>{entry.specialist}</p>
+      <h4>Diagnoses:</h4>
+      <DiagnosisListElement entry={entry} diagnoses={diagnoses} />
     </div>
   );
 };

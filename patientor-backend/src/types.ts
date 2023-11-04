@@ -18,7 +18,7 @@ export interface Patient {
   gender: Gender;
   occupation: string;
   entries: Entry[]
-  averageRating: number;
+  averageRating: number | undefined;
 }
 
 export type NonSensitivePatient = Omit<Patient, 'ssn' | 'entries' | 'averageRating'>;

@@ -16,7 +16,7 @@ export const toNewPatient = (object: unknown): NewPatient => {
       gender: parseGender(object.gender),
       occupation: parseInput(object.occupation, 'occupation'),
       entries: [],
-      averageRating: 0
+      averageRating: undefined
     };
 
   return newPatient;

@@ -42,7 +42,7 @@ const App = () => {
           </Typography>
           <Divider hidden />
           <Routes>
-            <Route path='/' element={<PatientListPage patients={patients} setPatients={setPatients} />} />
+            <Route path='/' element={<PatientListPage patients={patients} setPatients={setPatients} diagnoses={diagnoses} />} />
             <Route path="/patients/:id" element={<PatientDetailsPage diagnoses={diagnoses} entries={entries} setEntries={setEntries} />} />
           </Routes>
         </Container>

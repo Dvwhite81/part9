@@ -14,6 +14,7 @@ router.post('/', (req, res) => {
     const addedPatient = patientService.addPatient(newPatient);
     res.json(addedPatient);
   } catch (error: unknown) {
+    console.log('routes post:', error);
     let errorMessage = 'Something went wrong.';
     if (error instanceof Error) {
       errorMessage += ' Error: ' + error.message;
@@ -26,12 +27,13 @@ router.get('/:id', (req, res) => {
   const id = req.params.id;
   const patient = patientService.getPatientById(id);
 
-  if (!patient) {
-    return res.status(404).send({
+  if (patient) {
+    res.send(patient);
+  } else {
+    res.status(404).send({
       error: `No patient with id: ${id}`
     });
   }
-  return res.json(patient);
 });
 
 router.post('/:id/entries', (req, res) => {

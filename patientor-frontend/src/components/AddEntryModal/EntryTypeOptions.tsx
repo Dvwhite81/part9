@@ -1,9 +1,9 @@
-import { /*Diagnosis,*/ NewEntry, EntryType } from '../../types';
+import { Diagnosis, NewEntry, EntryType } from '../../types';
 
 export interface Props {
   onCancel: () => void;
   onSubmit: (values: NewEntry) => void;
-  //diagnoses: Diagnosis[];
+  diagnoses: Diagnosis[]
 }
 
 export interface EntryOptions {
