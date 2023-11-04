@@ -1,5 +1,5 @@
 import { useState, SyntheticEvent } from 'react';
-import {  TextField, Grid, Button, InputLabel, Input, Select, MenuItem, SelectChangeEvent } from '@mui/material';
+import { TextField, Grid, Button, InputLabel, Input, Select, MenuItem, SelectChangeEvent } from '@mui/material';
 import { Props, entryOptions, ratingOptions } from './EntryTypeOptions';
 import { EntryType, HealthCheckRating } from '../../types';
 
@@ -171,20 +171,24 @@ const AddEntryForm = ({ onCancel, onSubmit, diagnoses }: Props) => {
             </MenuItem>
           )}
         </Select>
+        <InputLabel style={{ marginTop: 20 }}>Description</InputLabel>
         <TextField
-          label="Description"
+          label='Any details about the entry...'
           fullWidth
           value={description}
           onChange={({ target }) => setDescription(target.value)}
         />
+        <InputLabel style={{ marginTop: 20 }}>Date</InputLabel>
         <TextField
-          label="Date"
+          type='date'
           fullWidth
           value={date}
           onChange={({ target }) => setDate(target.value)}
+          InputLabelProps={{ shrink: true }}
         />
+        <InputLabel style={{ marginTop: 20 }}>Specialist</InputLabel>
         <TextField
-          label="Specialist"
+          label='Diagnosis made by...'
           fullWidth
           value={specialist}
           onChange={({ target }) => setSpecialist(target.value)}
@@ -213,10 +217,10 @@ const AddEntryForm = ({ onCancel, onSubmit, diagnoses }: Props) => {
         <Grid>
           <Grid item>
             <Button
-              color="secondary"
-              variant="contained"
-              style={{ float: "left" }}
-              type="button"
+              color='secondary'
+              variant='contained'
+              style={{ float: 'left' }}
+              type='button'
               onClick={onCancel}
             >
               Cancel
@@ -225,10 +229,10 @@ const AddEntryForm = ({ onCancel, onSubmit, diagnoses }: Props) => {
           <Grid item>
             <Button
               style={{
-                float: "right",
+                float: 'right',
               }}
-              type="submit"
-              variant="contained"
+              type='submit'
+              variant='contained'
             >
               Add
             </Button>

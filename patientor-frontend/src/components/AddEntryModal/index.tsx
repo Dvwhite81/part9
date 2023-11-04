@@ -1,7 +1,7 @@
 import { Dialog, DialogTitle, DialogContent, Divider, Alert } from '@mui/material';
 
 import AddEntryForm from './AddEntryForm';
-import { Diagnosis, NewEntry } from "../../types";
+import { Diagnosis, NewEntry } from '../../types';
 
 interface Props {
   modalOpen: boolean;

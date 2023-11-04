@@ -1,12 +1,12 @@
 import axios from 'axios';
-import { useState } from "react";
+import { useState } from 'react';
 import { Box, Table, Button, TableHead, Typography, TableCell, TableRow, TableBody, Alert } from '@mui/material';
 import { Link } from 'react-router-dom';
 
-import { PatientFormValues, Patient, Diagnosis } from "../../types";
-import AddPatientModal from "../AddPatientModal";
-import HealthRatingBar from "../HealthRatingBar";
-import patientService from "../../services/patients";
+import { PatientFormValues, Patient, Diagnosis } from '../../types';
+import AddPatientModal from '../AddPatientModal';
+import HealthRatingBar from '../HealthRatingBar';
+import patientService from '../../services/patients';
 
 interface Props {
   patients : Patient[]
@@ -38,16 +38,16 @@ const PatientListPage = ({ patients, setPatients } : Props ) => {
       }, 5000);
     } catch (e: unknown) {
       if (axios.isAxiosError(e)) {
-        if (e?.response?.data && typeof e?.response?.data === "string") {
+        if (e?.response?.data && typeof e?.response?.data === 'string') {
           const message = e.response.data.replace('Something went wrong. Error: ', '');
           console.error(message);
           setError(message);
         } else {
-          setError("Unrecognized axios error");
+          setError('Unrecognized axios error');
         }
       } else {
-        console.error("Unknown error", e);
-        setError("Unknown error");
+        console.error('Unknown error', e);
+        setError('Unknown error');
       }
     }
   };
@@ -66,7 +66,7 @@ const PatientListPage = ({ patients, setPatients } : Props ) => {
           Patient list
         </Typography>
       </Box>
-      <Table style={{ marginBottom: "1em" }}>
+      <Table style={{ marginBottom: '1em' }}>
         <TableHead>
           <TableRow>
             <TableCell>Name</TableCell>
